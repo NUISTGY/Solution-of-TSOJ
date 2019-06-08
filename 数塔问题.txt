@@ -1,0 +1,24 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+#define N 1001
+int dat[N][N];
+int n;
+int i, j;
+int main() {
+	cin >> n;
+	for (i = 0; i < n; i++)
+		for (j = 0; j <= i; j++)
+			cin >> dat[i][j];
+	int _min;
+	for (i = n - 1; i > 0; i--) {
+		for (j = 0; j < i; j++)
+		{
+			_min = min(dat[i][j], dat[i][j + 1]);
+			dat[i - 1][j] += _min;
+		}
+	}
+	cout << dat[0][0];
+	return 0;
+}
+

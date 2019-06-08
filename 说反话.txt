@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <string.h>
+char a[20][1000]; //定义最大100行，每行1000个字符的字符串数组
+int i,j,n;
+int main()
+{
+scanf("%d",&n);
+getchar(); //清除回车符
+for(i=0;i<n;i++)
+{
+gets(a[i]);
+}
+ for(i=0;i<n;i++){
+        for(j=(strlen(a[i])-1);j>=0;j--)
+        putchar(a[i][j]);printf("\n");}
+return 0;
+} 

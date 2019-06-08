@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    string a;
+    while(cin>>a){
+        if(a.length()==1&&a[0]=='0')
+        {
+            cout<<"0";
+            return 0;
+        }
+        else if(a[0]=='-')
+        {
+            cout<<"-";
+            bool flag=true;
+            for(int i=a.length()-1;i>=1;i--)
+            {
+                if(a[i]=='0'&&flag==true)
+                {
+                    continue;
+                }
+                if(a[i]!=0)
+                {
+                    flag=false;
+                }
+                cout<<a[i];
+            }
+        }
+        else
+        {
+            bool flag2=true;
+            for(int i=a.length()-1;i>=0;i--)
+            {
+                if(a[i]=='0'&&flag2==true)
+                {
+                    continue;
+                }
+                if(a[i]!=0)
+                {
+                    flag2=false;
+                }
+                cout<<a[i];
+            }
+        }}
+    return 0;
+}

@@ -1,0 +1,53 @@
+#include<stdio.h>
+
+int main(void)
+{
+	int n = 0;
+	int len[1000];
+	double ans;
+	while (EOF != scanf("%d", &n))
+	{
+		int i;
+		for (i = 0; i < n; i++)
+		{
+			scanf("%d", &len[i]);
+		}
+		ans = -1;
+		int j, k;
+		for (i = 0; i < n; i++)
+		{
+			for (j = i + 1; j < n; j++)
+			{
+				for (k = j + 1; k < n; k++)
+				{
+					if (len[i] * len[i] + len[j] * len[j] == len[k] * len[k])
+					{
+						int isans = 0.5 * len[i] * len[j];
+						if (isans > ans)
+							ans = isans;
+					}
+					else if (len[i] * len[i] + len[k] * len[k] == len[j] * len[j])
+					{
+						 int isans = 0.5 * len[i] * len[k];
+						 if (isans > ans)
+							 ans = isans;
+					}
+					else if (len[k] * len[k] + len[j] * len[j] == len[i] * len[i])
+					{
+						 int isans = 0.5 * len[k] * len[j];
+						 if (isans > ans)
+							 ans = isans;
+					}
+				}
+			}
+		}
+		if (-1 == ans)
+		{
+			printf("No\n");
+		}
+		else {
+			printf("%.3lf\n", ans);
+		}
+	}
+	return 0;
+}

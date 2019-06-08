@@ -1,0 +1,39 @@
+#include<iostream>
+using namespace std;
+char arr[3000][3000];
+void func(int n, int x, int y) {
+	if (n == 1) {
+		arr[x][y] = 'X';
+	}
+	else {
+		int size = pow(3.0, n - 2);
+		func(n - 1, x, y);//左上角
+		func(n - 1, x, y + 2 * size);//右上角
+		func(n - 1, x + size, y + size);//中间 
+		func(n - 1, x + 2 * size, y);//左下角
+		func(n - 1, x + 2 * size, y + 2 * size);//右下角
+	}
+	return;
+}
+int main(void) {
+	int n;
+	while (cin>>n) {
+		int size = pow(3.0, n - 1);
+		for (int i = 0; i <= size; i++) {
+			for (int j = 0; j <= size; j++) {
+				arr[i][j] = ' ';
+			}
+		}
+
+		func(n, 1, 1);
+
+		for (int i = 1; i <= size; i++) {
+			for (int j = 1; j <= size; j++) {
+				cout<<arr[i][j];
+			}
+			cout<<endl;
+		}
+		cout<<"-"<<endl;
+	}
+	return 0;
+}

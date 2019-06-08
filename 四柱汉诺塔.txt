@@ -1,0 +1,19 @@
+#include<cstdio> 
+#include<iostream> 
+#include<cstring> 
+using namespace std; 
+int rim,tmp,n,k,cnt,f[50001]; 
+int main() {
+    while(cin>>n) {
+        tmp=1;k=0;cnt=0;rim=1; 
+        for(int i=tmp;i<=n;i++){
+            f[i]=f[i-1]%10000+rim%10000;
+            cnt++; 
+            if(cnt==k+1) 
+                k++,rim=rim*2%10000,cnt=0;
+        } 
+        cout<<f[n]%10000<<endl; 
+        tmp=max(n,tmp);
+    } 
+    return 0;
+}

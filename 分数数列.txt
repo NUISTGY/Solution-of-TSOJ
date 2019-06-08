@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int use[10000] = { 0 };
+int son[3001] = { 0 }, mather[3001] = { 0 };
+void _init();
+
+int main()
+{
+	son[1] = 1;
+	mather[1] = 2;
+	use[0] = use[1] = use[2] = 1;
+	_init();
+	int n;
+	while (scanf("%d",&n)!=EOF)
+	{
+		printf("%d/%d\n",son[n],mather[n]);
+	}
+	return 0;
+}
+
+void _init()
+{
+	for (int i = 1; i < 3000; i++)
+	{
+		for (int s = i * 1.6; s <= i * 3; s++) // mark
+		{
+			if (!use[s])
+			{
+				use[s] = 1;
+				use[s + i + 1] = 1;
+				son[i + 1] = s;
+				mather[i + 1] = s + i + 1;
+				break;
+			}
+		}
+	}
+}

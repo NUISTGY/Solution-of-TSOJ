@@ -1,0 +1,22 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+int main(){
+	int n;
+	long long arr[20];
+	while(cin>>n){
+		long long a,b;
+		for(int i=0;i<n;i++)
+		cin>>arr[i];
+		sort(arr,arr+n);
+		for(int i=0;i<n-1;i++){
+			a=arr[i];
+			b=arr[i+1];
+			arr[i+1]=a*b+1;
+			sort(arr+i+1,arr+n);
+		}
+		cout<<arr[n-1]<<endl;
+	}
+	return 0;
+} 

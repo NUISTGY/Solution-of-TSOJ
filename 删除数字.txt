@@ -1,0 +1,36 @@
+#include<cstdio>
+#include<iostream>
+#include<cstring>   
+using namespace std;
+//格式化输入输出头文件和字符串头文件
+char n[250];        //利用字符数组来储存高精度数
+int s, i, len, flag = 1;
+int main()
+{
+	while (cin >> n >> s) {
+		len = strlen(n);             //这里是长度函数，取n的长度并赋值给len
+		while (s != 0)              //只要s不是0，取数的工作就没有做完！
+		{
+			i = 0;
+			while (n[i] >= n[i + 1]) //括号内的条件保证了不降序的条件，当它退出时，就是升序数列的末尾了
+				i++;
+			while (i < len - 1)         //这时已经找到了要取出的数——n[i]，这是取出的过程
+			{
+				n[i] = n[i + 1]; i++;
+			}         //其实这个循环可以用erase(i,1);代替
+			len--;                //取出后数字长度减1
+			s--;                   //消耗掉一次取出次数
+		}
+		for (int i = 0; i < len; i++)         //输出时要小心最高位是0的问题！处理输出……
+		{
+			if (n[i] == '0'&&i < len - 1 && flag == 1)  //如果即将输出的这一位是0且是最高位而且不是最后一个
+				continue;           //跳过
+			else
+			{
+				cout<<n[i];
+				flag = 0;
+			}//输出并且明确n[i]不再是最高位
+		}cout << endl;
+	}
+	return 0;
+}

@@ -1,0 +1,29 @@
+#include<iostream>
+
+int func(int n, int m)
+{
+	if ((n < 1) || (m < 1))
+		return 0;
+	if (n == 1 || m == 1)//n=1时，即{1}，当m=1时，即n个1
+		return 1;
+	if (n == m)//(1)n=m时，即{n}一个,(2)n的m-1的所有划分个数(1)+(2)=dg(n,m-1)+1;
+		return func(n, m - 1) + 1;
+	if (n < m) //实际情况没有这种情况的，所有和上一步相同即n=m即func(n,n);
+		return func(n, n);
+	if (n > m)//(1)当不出现m时，即为n的m-1的所有划分个数，(2)当出现m时，{m,[x1,x2,x3...]},
+		return func(n, m - 1) + func(n - m, m); 
+		//其中[x1,x2,x3...]中为n-m个，这里有可能出现m，所以为n-m的m划分，即q(n-m,m); 最终得(1)+(2)=func(n,m-1)+ func(n-m,m);    
+}
+
+
+int main()
+{
+	using namespace std;
+
+		int n, i, j, k, l;
+		while (cin>>n)
+		{
+			cout << func(n, n);
+		}
+	return 0;
+}

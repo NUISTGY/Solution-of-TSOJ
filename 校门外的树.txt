@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main(){
+    int L,M[100][2],tree[100001];//L表示路长,M存放区域区间端点值,tree存放树
+    int m;//m表示区域数量
+    while (scanf("%d%d",&L,&m)!=EOF) {
+        int i;
+        int sum = 0;
+        for (i = 0; i < m; i++) {
+            scanf("%d%d", &M[i][0], &M[i][1]);
+        }
+        for (int j = 0; j <= L; j++) {
+            tree[j] = 2;//用2来表示有树(一共L+1棵树）
+        }
+        for (int p = 0; p < m; p++) {
+            for (int k = M[p][0]; k <= M[p][1]; k++) {
+                tree[k] = 3;
+            }
+        }
+        for (int l = 0; l < (L + 1); l++) {
+            if (tree[l] == 2)
+                sum++;
+        }
+        printf("%d\n", sum);
+    }
+    return 0;
+}

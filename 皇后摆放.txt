@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include<iostream>
+
+int chess[8][8] = { 0 },
+	 row[8] = { 0 },
+	 col[8] = { 0 }, 
+	 left[15] = { 0 }, 
+	 right[15] = { 0 };
+int ans = 0;
+
+void _init_() {
+	int i, j;
+	for (i = 0; i < 8; i++)
+		for (j = 0; j < 8; j++)
+			if (chess[i][j] == 1) {
+				row[i]++; col[j]++; left[i + j]++; right[i - j + 7]++;
+			}
+}
+
+//判断能否满足规则，满足输出1，否则输出0
+int isRight(){ 
+	int i, j, flag = 0;
+	for (i = 0; i < 8; i++) {
+		if (row[i] > 1 || col[i] > 1)return 0;
+		for (j = 0; j < 8; j++) {
+			if (left[i + j] > 1 || right[i - j + 7] > 1) {
+				return 0;
+			}
+		}
+	}
+	return 1;
+}
+
+//n为列数
+void dfs(int n) {
+	//当n=8表明当前已经试探到棋盘的最后一列
+	if (n == 8) {
+		if (isRight()) {
+			ans++;
+		}
+	}
+	else {
+		for (int i = 0; i < 8; i++) {//i作为行
+			if (chess[i][n] != 1) {
+				chess[i][n] = 1;//试探
+				row[i]++; col[n]++; left[i + n]++; right[i - n + 7]++;//看上面解释
+				if (isRight())//满足要求则进行递归，否则回溯到前一步
+					dfs(n + 1);
+				chess[i][n] = 0;//回溯
+				row[i]--; col[n]--; left[i + n]--; right[i - n + 7]--;
+			}
+			else
+				dfs(n + 1);
+		}
+	}
+}
+
+int main() {
+	using namespace std;
+	for (int i = 0; i < 8; i++) {
+		for (int j = 0; j < 8; j++) {
+			cin >> chess[i][j];
+		}
+	}
+	_init_(); //初始化矩阵背后的秘密（无端
+	dfs(0);
+	cout << ans << endl;
+	return 0;
+}

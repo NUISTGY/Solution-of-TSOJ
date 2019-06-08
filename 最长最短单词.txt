@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+using namespace std;
+#define MAX_INT 1000
+
+int main()
+{
+	string str, maxs, mins, temps;
+	int maxsl, minsl, tempsl;
+	while (getline(cin, str))
+	{
+		maxsl = -1;
+		minsl = MAX_INT;
+		maxs.clear();
+		mins.clear();
+		temps.clear();
+		for (int i = (str[0] == ' ') ? 1 : 0; i < str.length(); i++) {
+			 if (str[i] != ' ')   
+				temps += str[i];
+			else if (str[i] == ' ' && str[i - 1] != ' ') { 
+				tempsl = temps.length();
+				if (tempsl > maxsl) {
+					maxsl = tempsl;
+					maxs = temps;
+				}
+				if (tempsl < minsl) {
+					minsl = tempsl;
+					mins = temps;
+				}
+				temps.clear();
+			}
+		}
+		cout << maxs << endl << mins << endl;
+	}
+	return 0;
+}

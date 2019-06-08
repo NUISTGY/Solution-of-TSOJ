@@ -1,0 +1,22 @@
+#include<iostream>
+#include<string>
+using namespace std;
+unsigned long long dp[18005];
+int main()
+{	
+		int i, j, n;	
+		for (int i = 0; i < 18005; i++)
+		{
+			dp[i] = 0;
+		}
+		dp[0] = 1;
+		for (i = 1; i <= 18005; i++)			
+			for (j = i; j <= 18005; j++)			
+				dp[j] += dp[j - i];
+		while (cin >> n)
+		{
+			cout << (dp[n]% 100000007)<< endl;
+		}
+		return 0;
+}
+

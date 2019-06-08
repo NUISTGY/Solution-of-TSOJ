@@ -1,0 +1,25 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+int arr[3000], brr[3000];
+
+int main() {
+	int n;
+	while (cin>>n)
+	{
+		for (int i = 0; i < n; i++) {
+			cin >> arr[i];
+		}
+		for (int i = 0; i < n; i++) {
+			cin >> brr[i];
+		}
+		sort(arr, arr + n);
+		sort(brr, brr + n,greater<int>());
+		int sum=0;
+		for (int i = 0; i < n; i++) {
+			sum += arr[i] * brr[i];
+		}
+		cout << sum << endl;
+	}
+	return 0;
+}

@@ -1,0 +1,19 @@
+#include<stdio.h>
+#include<iostream>
+using namespace std;
+
+int main() {
+	int a, b;
+	while (cin>>a)
+	{
+		int res = a;
+		char c;
+		while ((c=getchar())!='\n')
+		{
+			cin >> b;
+			if (c == '+') res += b;
+			if (c == '-') res -= b;
+		}
+		cout << res << endl;
+	}
+}

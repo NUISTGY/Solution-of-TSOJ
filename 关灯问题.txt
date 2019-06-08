@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+    /*0表示关灯，1表示开灯*/
+    int n,k,a[101],i,b,c,d;
+   while(scanf("%d %d",&n,&k)!=EOF)//多组输入灯的数目和人数
+    {
+    for(i=1;i<101;i++)
+        a[i]=0;
+    for(b=1;b<=k;b++) //关灯问题核心代码
+    {      
+        for(c=1;c<=n;c++)
+        {
+            if(c%b==0)
+            {
+                if(a[c]==0)
+                    a[c]=1;
+                else
+                    a[c]=0;
+            }
+        }
+    }
+    for(d=1;d<=n;d++)
+        if(a[d]==1)
+        printf("%d\n",d); //输出
+    } 
+}

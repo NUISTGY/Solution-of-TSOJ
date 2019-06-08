@@ -1,0 +1,21 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int N, K;
+	while (cin >> N >> K)
+	{
+		int i;
+		int s1 = 0, s2 = 200;
+		for (i = 1; i <= 20; i++)
+		{
+			s1 += N;
+			s2 = s2 + K;
+			if (s1 >= s2) break;
+		}
+		if (i <= 20) cout << i << endl;
+	else cout << "Impossible" << endl;
+	}
+	return 0;
+}

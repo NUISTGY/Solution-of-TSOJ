@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<string.h>
+#define MAX(x,y)((x)>(y)?(x):(y))
+int main()
+{
+    char a[1000][100],b[1000][100];
+    int i,j,k,m,n;
+    scanf("%d",&n);
+    getchar();
+    while(n--)
+    {
+        gets(a[n]);
+        gets(b[n]);
+        k=MAX(strlen(a[n]),strlen(b[n]));
+        for(i=0; i<k; i++)
+        {
+            if(a[n][i]==32)
+            {
+                for(j=i; j<k; j++)
+                    a[n][j]=a[n][j+1];
+                i--;
+            }
+            if(b[n][i]==32)
+            {
+                for(j=i; j<k; j++)
+                    b[n][j]=b[n][j+1];
+                i--;
+            }
+            if((a[n][i]<=122)&&(a[n][i]>=96))
+                a[n][i]-=32;
+            if((b[n][i]<=122)&&(b[n][i]>=96))
+                b[n][i]-=32;
+                }
+if(strcmp(a[n],b[n])==0)
+            printf("YES\n");
+        else
+            printf("NO\n");
+    }
+    return 0;
+}

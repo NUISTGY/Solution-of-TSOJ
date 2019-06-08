@@ -1,0 +1,14 @@
+#include<stdio.h>
+int main()
+{
+    int n,x,y,z;    //x母鸡数，y公鸡数，z小鸡数
+    scanf("%d",&n);
+    for(x=1;x<=n/5;x++)     
+       for(y=1;y<=n/3;y++)     
+              for(z=1;z<=2*n;z++)   
+                 if(x+y+z==n&&5*x+3*y+z/2==n&&z%2==0)
+                     {
+                          printf("%d %d %d\n",x,y,z);
+                     }
+                     return 0;
+}  

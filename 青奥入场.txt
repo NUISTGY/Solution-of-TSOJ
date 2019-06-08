@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <string.h>
+#define N 100
+int main(){
+    struct info
+    {
+     int no;
+     char nation[30];
+     int people;
+     char con[30];
+    };
+    struct info a[N];
+    int n;
+    while (scanf("%d",&n)!=EOF){
+        for (int i = 0; i <n ; i++) {
+            scanf("%d%s%d%s",&a[i].no,a[i].nation,&a[i].people,a[i].con);
+        }
+        for (int  i= 0;  i<n ; i++) {
+            for (int j = 0; j <n-i-1 ; j++) {
+                if(strcmp(a [j + 1].nation, "China") == 0)//如果第二个字符串是China则跳过
+                    continue;
+                else if(strcmp(a [j].nation, a [j + 1].nation) > 0 || strcmp(a [j].nation, "China") == 0)
+                {  //前面的字符串比后面的小或者前面的字符串是China
+                    int temp1;
+                    temp1=a[j].no;
+                    a[j].no=a[j+1].no;
+                    a[j+1].no=temp1;
+
+                    char temp[30] = {0};
+                    strcpy(temp, a[j].nation);
+                    strcpy(a[j].nation, a[j + 1].nation);
+                    strcpy(a[j + 1].nation, temp);
+
+                    int temp2;
+                    temp2=a[j].people;
+                    a[j].people=a[j+1].people;
+                    a[j+1].people=temp2;
+
+                    char temp3[30] = {0};
+                    strcpy(temp3,a[j].con);
+                    strcpy(a[j].con,a[j+1].con);
+                    strcpy(a[j+1].con,temp3);
+                }
+            }
+        }
+        for (int k = 0; k <n ; k++) {
+            printf("%d %s %d %s\n",a[k].no,a[k].nation,a[k].people,a[k].con);
+        }
+    }
+}
